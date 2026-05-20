@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>20233037 Calc1</title>
+
+<style>
+@media (max-width:540px) {
+    div.empty { display: none; }
+    div.vertical { display: block; }
+    div.horizontal { display: none; }
+}
+
+@media (max-width:360px) {
+    div.empty { display: block; }
+    div.vertical { display: none; }
+    div.horizontal { display: none; }
+}
+
+@media (min-width:541px) {
+    div.empty { display: none; }
+    div.vertical { display: none; }
+    div.horizontal { display: block; }
+}
+
+/* 기본 스타일 */
+body {
+    text-align: center;
+    
+}
+
+table {
+    margin: auto;
+    padding: 20px 10px;
+    border: 1px solid #d4d4d4;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+td {
+    text-align: center;
+    font-size: 30px;
+    height: 30px;
+}
+
+.display {
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+.horizontal td button {
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    font-size: 20px;
+    cursor: pointer;
+	background-color: #fafafa;
+    border-radius: 5px;
+    border: 0.5px solid #cccccc;
+    
+}
+
+.horizontal td button:hover {
+    background-color: #ddd;
+    
+}
+
+.horizontal td button.calc {
+    background-color: #ffcc00;
+}
+
+.horizontal td button.data {
+    background-color: #dddddd;
+}
+
+.comment {
+    font-size: 16px;
+    color: gray;
+    padding: -2px;      
+    height: 20px;
+    text-align: right;
+}
+</style>
+<!-- 숫자버튼 함수 -->
+<script>
+function numberButton(num) {
+    if (document.getElementById('display_h').innerHTML == '0') {
+        document.getElementById('display_h').innerHTML = num;
+    } else {
+        document.getElementById('display_h').innerHTML += num;
+    }
+}
+</script>
+<!-- 연산버튼 함수 -->
+<script>
+let curValue = 0;
+let calc = '';
+
+function plusButton() {
+    curValue = parseFloat(document.getElementById('display_h').innerHTML);
+    document.getElementById('display_h').innerHTML = 0;
+    calc = '+';
+}
+
+function minusButton() {
+    curValue = parseFloat(document.getElementById('display_h').innerHTML);
+    document.getElementById('display_h').innerHTML = 0;
+    calc = '-';
+}
+
+function divButton() {
+    curValue = parseFloat(document.getElementById('display_h').innerHTML);
+    document.getElementById('display_h').innerHTML = 0;
+    calc = '/';
+}
+</script>
+
+<script>
+function equalButton() {
+    if (operator = '+') {
+        curValue += parseFloat(document.getElementById('display_h').innerHTML);
+        document.getElementById('display_h').innerHTML = curValue;
+    } else if (operator = '-') {
+        curValue -= parseFloat(document.getElementById('display_h').innerHTML);
+        document.getElementById('display_h').innerHTML = curValue;
+    } else if (operator = '/') {
+        curValue /= parseFloat(document.getElementById('display_h').innerHTML);
+        document.getElementById('display_h').innerHTML = curValue;
+    } else {
+
+    }
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="empty">
+    <p>표시할수 없음.</p>
+</div>
+
+<div class="horizontal">
+    <table width="540" height="480">
+        <tr><td colspan ="7" class="display" style="text-align: right;"><span id="display_h">0</span></td></tr>
+        <tr>
+        <td><button class= "button data"></button></td>
+        <td><button class= "button data"></button></td>
+        <td><button class='num' onclick='numberButton(7);'>7</button></td>
+        <td><button class='num' onclick='numberButton(8);'>8</button></td>
+        <td><button class='num' onclick='numberButton(9);'>9</button></td>
+        <td><button class= "button calc">÷</button></td>
+        <td><button class= "button data">R2</button></td>
+        </tr>
+        
+        <tr>
+        <td><button class= "button data">log</button></td>
+        <td><button class= "button data">!</button></td>
+        <td><button class='num' onclick='numberButton(4);'>4</button></td>
+        <td><button class='num' onclick='numberButton(5);'>5</button></td>
+        <td><button class='num' onclick='numberButton(6);'>6</button></td>
+        <td><button class= "button calc">x</button></td>
+        <td><button class= "button data">R0</button></td>
+        </tr>
+        
+        <tr>
+        <td><button class= "button data">π</button></td>
+        <td><button class= "button data">x²</button></td>
+        <td><button class='num' onclick='numberButton(1);'>1</button></td>
+        <td><button class='num' onclick='numberButton(2);'>2</button></td>
+        <td><button class='num' onclick='numberButton(3);'>3</button></td>
+        <td><button class= "button calc" onclick="minusButton()">-</button></td>
+        <td><button class= "button data">CE</button></td>
+        </tr>
+        
+        <tr>
+        <td><button class= "button data">√x</button></td>
+        <td><button class= "button data">%</button></td>
+        <td><button class='num' onclick='numberButton(0);'>0</button></td>
+        <td><button>.</button></td>
+        <!-- == * -1 -->
+        <td><button class= "button calc" onclick="reverseButton()">+/-</button></td>  
+        <td><button class= "button calc" onclick="plusButton()">+</button></td>
+        <td><button class= "button" onclick="equalButton()">=</button></td>
+        </tr>
+        
+        <tr>
+        <td colspan="7" class="comment";>
+        20233037 김동완
+        </td>
+</tr>
+    </table>
+</div>
+
+</body>
+</html>
